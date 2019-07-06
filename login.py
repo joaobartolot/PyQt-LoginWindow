@@ -1,4 +1,5 @@
 import sys
+from data import LoadData
 from PyQt5 import QtWidgets
 
 class Login(QtWidgets.QWidget):
@@ -9,6 +10,7 @@ class Login(QtWidgets.QWidget):
             stylesheet = f.read()
 
         self.setFixedSize(240, 480)
+        self.setWindowTitle('Login')
         self.setStyleSheet(stylesheet)
 
 
@@ -31,7 +33,7 @@ class Login(QtWidgets.QWidget):
 
 
         self.loginBtn = QtWidgets.QPushButton('Login', self)
-        self.loginBtn.clicked.connect(self.verify_password)
+        self.loginBtn.clicked.connect(self.verify_account)
         self.loginBtn.setObjectName('loginBtn')
         self.loginBtn.move(35, 320)
         
@@ -39,8 +41,39 @@ class Login(QtWidgets.QWidget):
         self.show()
 
 
-    def verify_password(self):
-        pass
+    def verify_account(self):
+        self.usernameError.setText('')
+        self.passwordError.setText('')
+
+        data = LoadData()
+
+        if self.usernameInput.text() != '' and self.passwordInput != '':
+            if self.usernameInput.text() == '':
+                self.usernameError.setText('Please enter a username')
+                self.usernameError.adjustSize()
+
+            if self.passwordInput.text() == '':
+                self.passwordError.setText('Please enter a password')
+                self.passwordError.adjustSize()
+
+
+            if self.usernameInput.text() not in data.username_list:
+                self.usernameError.setText('Please check your username')
+                self.usernameError.adjustSize()
+
+            else:
+                if self.passwordInput.text() not in data.password_list:
+                    self.passwordError.setText('You got the wrong password')
+                    self.passwordError.adjustSize()
+
+
+        else:
+            self.usernameError.setText('Please enter a username')
+            self.usernameError.adjustSize()
+
+            self.passwordError.setText('Please enter a password')
+            self.passwordError.adjustSize()
+
 
 
 if __name__ == '__main__':

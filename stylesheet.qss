@@ -8,6 +8,11 @@
 	height: 20px;
 }
 
+.QLineEdit#nameInput{
+	width: 150px;
+	height 20px;
+}
+
 .QLabel#labelError{
 	font: 10px;
 	color: red;

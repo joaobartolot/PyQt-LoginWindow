@@ -1,23 +1,27 @@
 import json
 
-class Load:
-    def __init__():
+class LoadData:
+    def __init__(self):
         with open('database.json') as f:
-            data = json.load(f)
+            self.data = json.load(f)
 
-        self.data = data
-        self.user_list = data['users']
+        self.user_list = self.data['users']
 
-def register(name, username, password):
-    data = load().data
+        self.username_list = list()
+        self.password_list = list()
 
-    data['users'].append(
-            {
-                'name': name,
-                'username': username,
-                'password': password
-            }
-        )
+        for users in self.user_list:
+            self.username_list.append(users['username'])
+            self.password_list.append(users['password'])
 
-    with open('database.json', 'w') as f:
-        json.dump(data, f, indent=2)
+    def register(self, name, username, password):
+        self.data['users'].append(
+                {
+                    'name': name,
+                    'username': username,
+                    'password': password
+                }
+            )
+
+        with open('database.json', 'w') as f:
+            json.dump(self.data, f, indent=2)
