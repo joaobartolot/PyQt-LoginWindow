@@ -2,7 +2,7 @@
 
 This is repository is a simple login and registration window.
 
-## What did I learned:
+## What I've learned:
 
 * How some of the classes features works in python;
 * PyQt5
