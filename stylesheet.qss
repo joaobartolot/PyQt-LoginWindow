@@ -1,0 +1,13 @@
+.QLineEdit#usernameInput{
+	width: 150px;
+}
+
+.QLineEdit#passwordInput{
+	width: 150px;
+}
+
+.QLabel#labelMessage{
+}
+
+.QWidget#messageBox{
+}
